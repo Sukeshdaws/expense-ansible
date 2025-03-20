@@ -18,8 +18,8 @@
 #first we need to check wether we are able to take the connection
   - name: check DB connection
     community.mysql.mysql_info:
-     login_user: "{{ root }}"
-     login_password: "{{ ExpenseApp@1 }}"
+     login_user: root
+     login_password: ExpenseApp@1 
      login_host: "{{ login_host }}"
      filter : version
      ignore_errors: yes
