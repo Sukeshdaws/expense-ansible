@@ -4,8 +4,8 @@
   vars:
    login_host: db.sukeshdaws.shop
    vars_prompt:
-   - name: mysql_root_password
-     prompt: please enter mysql rootpassword
+   - prompt: please enter mysql rootpassword
+     name: mysql_root_password
      private: no
   tasks:
   - name: Install mysql server
