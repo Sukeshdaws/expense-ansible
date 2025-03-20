@@ -25,11 +25,11 @@
 #check wether password is setup or not
 #first we need to check wether we are able to take the connection
 
-  - name: check_db_connection
+  - name: check_connection
     community.mysql.mysql_info:
       login_user: root
       login_password: ExpenseApp@1 
-      login_host: "{{ db.sukeshdaws.shop }}"
+      login_host: "{{ login_host }}"
       filter: version
     ignore_errors: yes
     register: mysql_connection_output
