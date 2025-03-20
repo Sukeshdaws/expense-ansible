@@ -3,6 +3,10 @@
   become: yes
   vars:
    login_host: db.sukeshdaws.shop
+   vars_prompt:
+   - name: mysql_root_password
+     prompt: please enter mysql rootpassword
+     private: no
   tasks:
   - name: Install mysql server
     ansible.builtin.dnf:
@@ -28,7 +32,7 @@
   - name: check_connection
     community.mysql.mysql_info:
       login_user: root
-      login_password: ExpenseApp@1 
+      login_password: "{{mysql_root_password}}"
       login_host: "{{ login_host }}"
       filter: version
     ignore_errors: yes
@@ -37,3 +41,9 @@
   - name: print output
     ansible.builtin.debug:
      msg: "output: {{mysql_connection_output}}"
+
+     #here it will throw an error stating that check login_user and login_password are correct now we need tp se password here
+
+  - name: setuproot password
+    ansible.builtin.command: mysql_secure_installation --set-root-pass {{mysql_root_password}}
+    when: mysql_connection_output.failed is true 
