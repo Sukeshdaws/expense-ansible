@@ -32,7 +32,7 @@
   - name: check_connection
     community.mysql.mysql_info:
       login_user: root
-      login_password: "{{mysql_root_password}}"
+      login_password: ExpenseApp@1
       login_host: "{{ login_host }}"
       filter: version
     ignore_errors: yes
