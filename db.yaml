@@ -13,7 +13,7 @@
   ansible.builtin.service:
    name: mysqld
    state: started
-   enable: yes
+   enabled: yes
 #check wether password is setup or not
 #first we need to check wether we are able to take the connection
 - name: check DB connection
