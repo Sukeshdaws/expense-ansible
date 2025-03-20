@@ -3,10 +3,6 @@
   become: yes
   vars:
    login_host: db.sukeshdaws.shop
-   vars_prompt:
-   - prompt: please enter mysql rootpassword
-     name: mysql_root_password
-     private: no
   tasks:
   - name: Install mysql server
     ansible.builtin.dnf:
@@ -45,5 +41,5 @@
      #here it will throw an error stating that check login_user and login_password are correct now we need tp se password here
 
   - name: setuproot password
-    ansible.builtin.command: mysql_secure_installation --set-root-pass {{mysql_root_password}}
+    ansible.builtin.command: mysql_secure_installation --set-root-pass ExpenseApp@1
     when: mysql_connection_output.failed is true 
