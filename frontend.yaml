@@ -23,7 +23,7 @@
       path: /usr/share/nginx/html
       state: directory
   
-  - name: download and extract front code
+  - name: unzip the code
     ansible.builtin.unarchive:
      src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
      dest: /usr/share/nginx/html
