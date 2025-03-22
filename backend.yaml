@@ -33,8 +33,12 @@
      dest: /app
      remote_src: yes
 
-  - name: install npm dependencies
+  - name: install npm dependencies      #ansible by default we dnt knw we are in which directory so we csn use args to change the directory
     ansible.builtin.command: npm install
     args:
      chdir: /app
      
+  - name: copy backend service
+    ansible.builtin.copy:
+     src: backend.service
+     dest: /etc/systemd/system/backend.service   
