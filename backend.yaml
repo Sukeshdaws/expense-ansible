@@ -1,6 +1,6 @@
 - name: configure bakend server
   become: yes
-  hosts: backend
+  hosts: Backend
   vars:
    login_host: db.sukeshdaws.shop
    login_password: ExpenseApp@1
