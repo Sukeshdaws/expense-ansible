@@ -2,6 +2,11 @@
   hosts: localhost
   vars:
    zone: sukeshdaws.shop
+   instances:
+   - db
+   - backend
+   - frontend
+
   tasks:
   - name: create ec2 instance
     amazon.aws.ec2_instance:
@@ -12,9 +17,7 @@
      tags:
       Name: "{{ item }}"
     loop:
-    - db
-    - frontend
-    - backend
+    - "{{ instances }}"
     register: ec2_instance_info 
 
   - name: print output
@@ -23,6 +26,14 @@
 
 
 
-  # - name: create r53 records
-  #   amazon.aws.route53:
-  #   record
+  - name: create r53 records
+    amazon.aws.route53:
+      state: present
+      zone: "{{ zone }}"
+      record: "{{ item }}.{{zone }}"
+      type: A
+      value: "{{ item.private_ip_address }}"
+      overwrite: true
+      ttl: 1
+
+    loop: "{{ results.instances }}"  
